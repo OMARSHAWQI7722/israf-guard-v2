@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Israf Guard — Turn Food Waste Into Opportunity</title>
+<meta name="description" content="Israf Guard is an intelligent food-waste management platform that helps food vendors predict demand, reduce waste, increase profits, and connect surplus food with students.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a120d'/%3E%3Cpath d='M32 40 Q35 32 32 24' stroke='%23b87d1a' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3Cpath d='M50 40 Q53 30 50 20' stroke='%23b87d1a' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3Cpath d='M68 40 Q71 32 68 24' stroke='%23b87d1a' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3Cellipse cx='50' cy='50' rx='22' ry='11' fill='%23f5f1e6'/%3E%3Crect x='24' y='56' width='52' height='11' rx='5.5' fill='%23b87d1a'/%3E%3Cpath d='M22 70 Q22 90 50 90 Q78 90 78 70' stroke='%23b87d1a' stroke-width='4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='42' y='94' width='16' height='7' rx='3.5' fill='%23b87d1a'/%3E%3C/svg%3E">
+<style>
+/* ===================== DESIGN TOKENS ===================== */
+:root{
+  --bg-void:#080e0a;
+  --bg-base:#0a120d;
+  --bg-raised:#0e1712;
+  --bg-panel:#111d17;
+  --bg-panel-2:#14231b;
+  --hairline:rgba(255,255,255,0.08);
+  --hairline-strong:rgba(255,255,255,0.14);
+
+  --emerald:#1c9d63;
+  --emerald-light:#34c988;
+  --emerald-dim:#0f5a3a;
+  --gold:#b87d1a;
+  --gold-light:#e0a83e;
+  --cream:#f5f1e6;
+  --terracotta:#c23b3b;
+  --terracotta-light:#e06457;
+
+  --ink-1:#f4f6f2;
+  --ink-2:#c4d1c8;
+  --ink-3:#8aa196;
+  --ink-4:#5c7268;
+
+  --grad-emerald: linear-gradient(135deg,#1c9d63 0%,#0f5a3a 100%);
+  --grad-gold: linear-gradient(135deg,#e0a83e 0%,#b87d1a 100%);
+  --grad-hero: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(28,157,99,0.35), transparent 60%),
+               radial-gradient(ellipse 60% 50% at 85% 10%, rgba(184,125,26,0.16), transparent 60%),
+               var(--bg-base);
+
+  --radius-sm:10px;
+  --radius-md:16px;
+  --radius-lg:24px;
+  --radius-pill:999px;
+
+  --shadow-1: 0 4px 24px rgba(0,0,0,0.35);
+  --shadow-2: 0 20px 60px rgba(0,0,0,0.45);
+  --shadow-glow-emerald: 0 0 40px rgba(28,157,99,0.35);
+  --shadow-glow-gold: 0 0 40px rgba(224,168,62,0.25);
+
+  --font-head:'Space Grotesk', 'Segoe UI', sans-serif;
+  --font-body:'Inter', 'Segoe UI', sans-serif;
+
+  --container:1240px;
+  color-scheme: dark;
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{overflow-x:hidden;}
+body{
+  margin:0;
+  background:var(--bg-base);
+  color:var(--ink-1);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+h1,h2,h3,h4{font-family:var(--font-head);margin:0;font-weight:600;letter-spacing:-0.02em;color:var(--ink-1);}
+p{margin:0;}
+ul{margin:0;padding:0;list-style:none;}
+button{font-family:inherit;cursor:pointer;}
+::selection{background:var(--emerald);color:#fff;}
+
+.container{max-width:var(--container);margin:0 auto;padding:0 32px;}
+.section{padding:120px 0;position:relative;}
+@media(max-width:768px){.section{padding:80px 0;} .container{padding:0 20px;}}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-head);font-size:13px;font-weight:600;
+  letter-spacing:0.14em;text-transform:uppercase;color:var(--emerald-light);
+  margin-bottom:18px;
+}
+.eyebrow::before{content:'';width:22px;height:2px;background:var(--emerald-light);border-radius:2px;}
+
+.section-head{max-width:680px;margin-bottom:64px;}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+h2.section-title{font-size:clamp(30px,4.2vw,48px);line-height:1.12;}
+.section-sub{margin-top:18px;font-size:18px;color:var(--ink-3);line-height:1.7;}
+
+.badge-pill{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(28,157,99,0.1);
+  border:1px solid rgba(28,157,99,0.35);
+  color:var(--emerald-light);
+  padding:8px 18px;border-radius:var(--radius-pill);
+  font-size:13px;font-weight:600;letter-spacing:0.02em;
+}
+.badge-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--emerald-light);box-shadow:0 0 10px var(--emerald-light);animation:pulse-dot 2s infinite;}
+@keyframes pulse-dot{0%,100%{opacity:1;}50%{opacity:0.35;}}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:15px 30px;border-radius:var(--radius-pill);
+  font-family:var(--font-head);font-weight:600;font-size:15px;
+  border:1px solid transparent;transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+  white-space:nowrap;
+}
+.btn-primary{background:var(--grad-gold);color:#1a1206;box-shadow:var(--shadow-glow-gold);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(224,168,62,0.4);}
+.btn-ghost{background:rgba(255,255,255,0.03);color:var(--ink-1);border-color:var(--hairline-strong);backdrop-filter:blur(8px);}
+.btn-ghost:hover{background:rgba(255,255,255,0.07);transform:translateY(-2px);}
+.btn-sm{padding:10px 20px;font-size:13px;}
+.btn-row{display:flex;gap:16px;flex-wrap:wrap;}
+
+.glass{
+  background:linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
+  border:1px solid var(--hairline);
+  backdrop-filter:blur(20px);
+  border-radius:var(--radius-lg);
+}
+.card{
+  background:var(--bg-panel);
+  border:1px solid var(--hairline);
+  border-radius:var(--radius-md);
+  padding:28px;
+  transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+.card:hover{border-color:var(--hairline-strong);transform:translateY(-4px);box-shadow:var(--shadow-1);}
+
+.grid{display:grid;gap:24px;}
+.grid-2{grid-template-columns:repeat(2,1fr);}
+.grid-3{grid-template-columns:repeat(3,1fr);}
+.grid-4{grid-template-columns:repeat(4,1fr);}
+.grid-5{grid-template-columns:repeat(5,1fr);}
+@media(max-width:1024px){.grid-4{grid-template-columns:repeat(2,1fr);} .grid-5{grid-template-columns:repeat(2,1fr);} .grid-3{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:640px){.grid-2,.grid-3,.grid-4,.grid-5{grid-template-columns:1fr;}}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,.8,.3,1), transform .8s cubic-bezier(.16,.8,.3,1);}
+.reveal.in-view{opacity:1;transform:translateY(0);}
+.reveal-delay-1.in-view{transition-delay:.1s;}
+.reveal-delay-2.in-view{transition-delay:.2s;}
+.reveal-delay-3.in-view{transition-delay:.3s;}
+.reveal-delay-4.in-view{transition-delay:.4s;}
+
+/* ===================== LOGO ===================== */
+.logo-mark{width:44px;height:44px;border-radius:12px;flex-shrink:0;}
+.logo-mark.lg{width:96px;height:96px;border-radius:22px;}
+.logo-mark.sm{width:34px;height:34px;border-radius:9px;}
+.logo-row{display:flex;align-items:center;gap:12px;}
+.logo-word{font-family:var(--font-head);font-weight:700;font-size:19px;letter-spacing:-0.01em;}
+.logo-word span{color:var(--gold-light);}
+
+/* ===================== NAV ===================== */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:22px 0;
+  transition:padding .35s ease, background .35s ease, border-color .35s ease;
+  border-bottom:1px solid transparent;
+}
+.nav.scrolled{
+  padding:12px 0;
+  background:rgba(8,14,10,0.78);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--hairline);
+}
+.nav .container{display:flex;align-items:center;justify-content:space-between;}
+.nav-links{display:flex;align-items:center;gap:30px;}
+.nav-links a{font-size:14.5px;font-weight:500;color:var(--ink-2);transition:color .2s ease;position:relative;}
+.nav-links a:hover{color:var(--ink-1);}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1.5px;background:var(--emerald-light);transition:width .25s ease;}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{display:flex;align-items:center;gap:14px;}
+.nav-toggle{display:none;background:none;border:1px solid var(--hairline-strong);color:var(--ink-1);width:42px;height:42px;border-radius:10px;align-items:center;justify-content:center;}
+@media(max-width:980px){
+  .nav-links{display:none;}
+  .nav-toggle{display:flex;}
+  .nav-links.mobile-open{
+    display:flex;flex-direction:column;align-items:flex-start;gap:18px;
+    position:absolute;top:100%;left:0;right:0;
+    background:rgba(8,14,10,0.97);backdrop-filter:blur(16px);
+    padding:24px 32px 30px;border-bottom:1px solid var(--hairline);
+  }
+}
+
+/* ===================== HERO ===================== */
+.hero{
+  position:relative;
+  padding:190px 0 120px;
+  background:var(--grad-hero);
+  overflow:hidden;
+}
+.hero-particles{position:absolute;inset:0;pointer-events:none;z-index:0;}
+.hero-particles span{
+  position:absolute;border-radius:50%;
+  background:radial-gradient(circle, rgba(52,201,136,0.55), rgba(52,201,136,0));
+  animation:float-particle linear infinite;
+}
+@keyframes float-particle{
+  0%{transform:translateY(0) translateX(0);opacity:0;}
+  10%{opacity:1;}
+  90%{opacity:1;}
+  100%{transform:translateY(-620px) translateX(30px);opacity:0;}
+}
+.hero .container{position:relative;z-index:2;}
+.hero-top{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:800px;margin:0 auto 70px;}
+.hero-logo{margin-bottom:28px;filter:drop-shadow(0 0 40px rgba(184,125,26,0.35));}
+.hero h1{font-size:clamp(38px,6vw,72px);line-height:1.06;margin-bottom:26px;}
+.hero h1 .accent{background:var(--grad-emerald);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero-sub{font-size:19px;color:var(--ink-3);max-width:640px;margin-bottom:38px;line-height:1.7;}
+
+.hero-dash{
+  max-width:1080px;margin:0 auto;padding:32px;position:relative;
+}
+.hero-dash-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px;flex-wrap:wrap;gap:12px;}
+.hero-dash-title{font-family:var(--font-head);font-weight:600;font-size:17px;color:var(--ink-1);}
+.live-tag{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-3);}
+.live-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--emerald-light);box-shadow:0 0 8px var(--emerald-light);}
+.hero-stats{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;}
+@media(max-width:980px){.hero-stats{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:560px){.hero-stats{grid-template-columns:repeat(2,1fr);}}
+.hero-stat{
+  background:var(--bg-panel);border:1px solid var(--hairline);border-radius:14px;
+  padding:18px 16px;text-align:left;
+}
+.hero-stat .label{font-size:11.5px;color:var(--ink-3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;}
+.hero-stat .value{font-family:var(--font-head);font-size:26px;font-weight:600;color:var(--ink-1);}
+.hero-stat .value.emerald{color:var(--emerald-light);}
+.hero-stat .value.gold{color:var(--gold-light);}
+.hero-stat .value.terracotta{color:var(--terracotta-light);}
+.hero-stat .sub{font-size:12px;color:var(--ink-4);margin-top:4px;}
+
+/* ===================== PROBLEM ===================== */
+.problem-flow{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin:0 auto 70px;max-width:960px;flex-wrap:wrap;
+}
+.problem-flow .pf-step{
+  flex:1;min-width:130px;text-align:center;padding:22px 14px;
+  background:var(--bg-panel);border:1px solid var(--hairline);border-radius:16px;
+  font-family:var(--font-head);font-weight:600;font-size:14.5px;color:var(--ink-2);
+  position:relative;
+}
+.problem-flow .pf-step.bad{color:var(--terracotta-light);border-color:rgba(194,59,59,0.3);}
+.problem-flow .pf-arrow{color:var(--ink-4);font-size:20px;flex-shrink:0;}
+@media(max-width:768px){.problem-flow{flex-direction:column;} .problem-flow .pf-arrow{transform:rotate(90deg);}}
+
+.problem-resolve{
+  text-align:center;font-family:var(--font-head);font-size:clamp(22px,3vw,30px);
+  color:var(--emerald-light);margin-top:10px;
+}
+
+.icon-tile{
+  width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+  background:rgba(194,59,59,0.1);border:1px solid rgba(194,59,59,0.25);margin-bottom:20px;font-size:22px;
+}
+.icon-tile.good{background:rgba(28,157,99,0.1);border-color:rgba(28,157,99,0.3);}
+.card h3{font-size:18px;margin-bottom:10px;}
+.card p.desc{color:var(--ink-3);font-size:14.5px;line-height:1.6;}
+
+/* ===================== SOLUTION CYCLE ===================== */
+.cycle-wrap{display:flex;gap:60px;align-items:center;flex-wrap:wrap;justify-content:center;}
+.cycle-visual{position:relative;width:420px;height:420px;flex-shrink:0;}
+@media(max-width:520px){.cycle-visual{width:320px;height:320px;}}
+.cycle-ring{position:absolute;inset:0;border-radius:50%;border:1px dashed var(--hairline-strong);}
+.cycle-ring.r2{inset:60px;border-style:solid;border-color:var(--hairline);}
+.cycle-center{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:150px;height:150px;border-radius:50%;
+  background:var(--grad-emerald);
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  box-shadow:var(--shadow-glow-emerald);
+  font-family:var(--font-head);font-weight:600;font-size:14px;color:#fff;padding:10px;
+}
+.cycle-node{
+  position:absolute;width:118px;height:118px;border-radius:50%;
+  background:var(--bg-panel);border:1px solid var(--hairline-strong);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  cursor:pointer;transition:all .4s ease;padding:8px;
+}
+@media(max-width:520px){.cycle-node{width:92px;height:92px;}}
+.cycle-node .num{font-family:var(--font-head);font-size:11px;color:var(--ink-4);font-weight:600;}
+.cycle-node .name{font-family:var(--font-head);font-size:15px;font-weight:700;margin-top:2px;}
+.cycle-node.active{background:var(--bg-panel-2);border-color:var(--gold-light);box-shadow:0 0 34px rgba(224,168,62,0.28);transform:scale(1.08);}
+.cycle-node.active .name{color:var(--gold-light);}
+.cycle-node.n1{top:-10px;left:50%;transform:translateX(-50%);}
+.cycle-node.n2{top:50%;right:-30px;transform:translateY(-50%);}
+.cycle-node.n3{bottom:-10px;left:50%;transform:translateX(-50%);}
+.cycle-node.n4{top:50%;left:-30px;transform:translateY(-50%);}
+.cycle-node.active.n1{transform:translateX(-50%) scale(1.08);}
+.cycle-node.active.n3{transform:translateX(-50%) scale(1.08);}
+.cycle-node.active.n2{transform:translateY(-50%) scale(1.08);}
+.cycle-node.active.n4{transform:translateY(-50%) scale(1.08);}
+
+.cycle-detail{flex:1;min-width:300px;max-width:460px;}
+.cycle-detail-card{padding:32px;min-height:270px;}
+.cycle-detail-card .num{font-family:var(--font-head);color:var(--gold-light);font-weight:700;font-size:14px;letter-spacing:0.08em;}
+.cycle-detail-card h3{font-size:24px;margin:10px 0 16px;}
+.cycle-detail-card p{color:var(--ink-3);font-size:15px;line-height:1.7;}
+.cycle-detail-card ul{margin-top:14px;}
+.cycle-detail-card li{font-size:14px;color:var(--ink-2);padding-left:20px;position:relative;margin-bottom:8px;}
+.cycle-detail-card li::before{content:'';position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--emerald-light);}
+.cycle-example{margin-top:16px;padding:14px 16px;border-radius:10px;background:rgba(255,255,255,0.03);border:1px solid var(--hairline);font-size:13.5px;}
+.cycle-dots{display:flex;gap:8px;margin-top:22px;}
+.cycle-dots span{width:8px;height:8px;border-radius:50%;background:var(--hairline-strong);transition:background .3s;}
+.cycle-dots span.active{background:var(--gold-light);}
+
+/* ===================== HOW IT WORKS ===================== */
+.steps-list{max-width:760px;margin:0 auto;position:relative;}
+.steps-list::before{content:'';position:absolute;left:27px;top:10px;bottom:10px;width:2px;background:linear-gradient(180deg, var(--emerald), transparent);}
+.step-item{display:flex;gap:24px;padding-bottom:44px;position:relative;}
+.step-item:last-child{padding-bottom:0;}
+.step-num{
+  flex-shrink:0;width:56px;height:56px;border-radius:50%;background:var(--bg-panel);
+  border:1px solid var(--hairline-strong);display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-head);font-weight:700;color:var(--emerald-light);font-size:18px;position:relative;z-index:1;
+}
+.step-body h3{font-size:17px;margin-bottom:6px;}
+.step-body p{color:var(--ink-3);font-size:14.5px;line-height:1.6;}
+
+/* ===================== DASHBOARD ===================== */
+.dash-panel{padding:32px;}
+.dash-tabs{display:flex;gap:10px;margin-bottom:40px;flex-wrap:wrap;}
+.dash-tab{padding:9px 18px;border-radius:var(--radius-pill);border:1px solid var(--hairline-strong);font-size:13.5px;font-weight:600;color:var(--ink-3);background:transparent;}
+.dash-tab.active{background:var(--emerald);color:#fff;border-color:transparent;}
+.stat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-bottom:36px;}
+@media(max-width:980px){.stat-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:560px){.stat-grid{grid-template-columns:repeat(2,1fr);}}
+.stat-tile{background:var(--bg-panel);border:1px solid var(--hairline);border-radius:14px;padding:20px 18px;}
+.stat-tile .label{font-size:11.5px;color:var(--ink-3);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:10px;}
+.stat-tile .value{font-family:var(--font-head);font-size:25px;font-weight:600;}
+.chart-grid{display:grid;grid-template-columns:2fr 1fr;gap:20px;}
+@media(max-width:900px){.chart-grid{grid-template-columns:1fr;}}
+.chart-card{background:var(--bg-panel);border:1px solid var(--hairline);border-radius:16px;padding:24px;}
+.chart-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:8px;}
+.chart-card-head h4{font-size:15px;font-weight:600;}
+.chart-legend{display:flex;gap:16px;font-size:12px;color:var(--ink-3);flex-wrap:wrap;}
+.chart-legend .lg-item{display:flex;align-items:center;gap:6px;}
+.chart-legend .swatch{width:9px;height:9px;border-radius:3px;}
+.svg-chart{width:100%;height:auto;overflow:visible;}
+.svg-chart text{font-family:var(--font-body);fill:var(--ink-4);font-size:11px;}
+.svg-chart .val-label{fill:var(--ink-1);font-size:11.5px;font-weight:600;}
+.svg-chart .grid-line{stroke:var(--hairline);stroke-width:1;}
+
+.forecast-card{padding:28px;background:linear-gradient(160deg, rgba(224,168,62,0.1), rgba(184,125,26,0.02));border:1px solid rgba(224,168,62,0.25);}
+.forecast-card .tag{font-family:var(--font-head);font-size:12.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-light);margin-bottom:18px;}
+.forecast-row{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:18px;}
+.forecast-row .fl{font-size:13px;color:var(--ink-3);}
+.forecast-row .fv{font-family:var(--font-head);font-size:30px;font-weight:700;}
+.confidence-wrap{display:flex;align-items:center;gap:16px;margin-top:6px;}
+.confidence-bar{flex:1;height:8px;border-radius:5px;background:rgba(255,255,255,0.08);overflow:hidden;}
+.confidence-fill{height:100%;border-radius:5px;background:var(--grad-gold);width:0%;transition:width 1.4s cubic-bezier(.16,.8,.3,1);}
+
+/* ===================== responsive helpers ===================== */
+.flex-between{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.mono-num{font-variant-numeric:tabular-nums;}
+
+/* ===================== PHONE MOCKUP ===================== */
+.phone-frame{
+  width:300px;border-radius:42px;background:#0c1712;
+  border:8px solid #182a21;box-shadow:var(--shadow-2), 0 0 60px rgba(28,157,99,0.15);
+  position:relative;overflow:hidden;
+}
+.phone-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:120px;height:22px;background:#0c1712;border-radius:0 0 16px 16px;z-index:2;}
+.phone-screen{padding:38px 18px 24px;min-height:520px;background:linear-gradient(180deg, rgba(28,157,99,0.06), transparent 30%), var(--bg-base);}
+.phone-status{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-3);margin-bottom:20px;font-weight:600;}
+.phone-offer-card{
+  background:linear-gradient(160deg, rgba(224,168,62,0.14), rgba(184,125,26,0.03));
+  border:1px solid rgba(224,168,62,0.3);border-radius:18px;padding:20px;margin-bottom:24px;
+}
+.phone-offer-tag{font-size:11px;font-weight:700;letter-spacing:0.05em;color:var(--gold-light);margin-bottom:10px;}
+.phone-offer-title{font-family:var(--font-head);font-size:20px;font-weight:700;margin-bottom:10px;}
+.phone-offer-price-row{display:flex;align-items:baseline;gap:10px;}
+.phone-old-price{text-decoration:line-through;color:var(--ink-4);font-size:14px;}
+.phone-new-price{font-family:var(--font-head);font-size:24px;font-weight:700;color:var(--emerald-light);}
+.phone-offer-meta{font-size:12px;color:var(--ink-3);margin-top:10px;}
+.phone-list-title{font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-4);margin-bottom:12px;}
+.phone-vendor-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--hairline);font-size:13.5px;}
+.phone-vendor-row .ok{color:var(--emerald-light);font-size:12px;font-weight:600;}
+.phone-vendor-row .dim{color:var(--gold-light);font-size:12px;font-weight:600;}
+.map-pin{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--emerald-light);box-shadow:0 0 0 4px rgba(52,201,136,0.18);cursor:pointer;animation:pulse-dot 2.4s infinite;}
+.map-pin::after{content:attr(data-name);position:absolute;top:-30px;left:50%;transform:translateX(-50%);background:var(--bg-panel-2);border:1px solid var(--hairline-strong);padding:5px 10px;border-radius:8px;font-size:11px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;}
+.map-pin:hover::after{opacity:1;}
+
+/* ===================== BEFORE/AFTER SLIDER ===================== */
+.ba-slider{position:relative;height:420px;border-radius:20px;overflow:hidden;border:1px solid var(--hairline-strong);user-select:none;}
+.ba-side{position:absolute;inset:0;padding:36px 32px;}
+.ba-before{background:linear-gradient(160deg,#1a1210,#0a0806);}
+.ba-after{background:linear-gradient(160deg,#0d1f16,#081410);clip-path:inset(0 50% 0 0);}
+.ba-label{font-family:var(--font-head);font-weight:700;font-size:15px;margin-bottom:22px;letter-spacing:0.02em;}
+.ba-before .ba-label{color:var(--terracotta-light);}
+.ba-after .ba-label{color:var(--emerald-light);}
+.ba-list li{font-size:14.5px;color:var(--ink-2);padding:9px 0;border-bottom:1px solid var(--hairline);}
+.ba-range{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0;}
+.ba-handle{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:44px;height:44px;border-radius:50%;background:var(--bg-panel-2);
+  border:1px solid var(--hairline-strong);display:flex;align-items:center;justify-content:center;
+  pointer-events:none;box-shadow:var(--shadow-1);z-index:3;
+}
+
+/* ===================== FLOW / ECOSYSTEM / TECH DIAGRAMS ===================== */
+.flow-diagram{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:70px;flex-wrap:wrap;}
+.flow-step{display:flex;flex-direction:column;align-items:center;gap:10px;font-family:var(--font-head);font-weight:600;font-size:14px;color:var(--ink-2);}
+.flow-icon{width:64px;height:64px;border-radius:50%;background:var(--bg-panel);border:1px solid var(--hairline-strong);display:flex;align-items:center;justify-content:center;font-size:26px;}
+
+.ecosystem-flow{display:flex;flex-direction:column;align-items:center;gap:6px;max-width:420px;margin:0 auto;}
+.eco-node{width:100%;display:flex;align-items:center;gap:14px;padding:16px 22px;background:var(--bg-panel);border:1px solid var(--hairline);border-radius:14px;font-family:var(--font-head);font-weight:600;}
+.eco-node.highlight{background:var(--grad-emerald);border-color:transparent;box-shadow:var(--shadow-glow-emerald);}
+.eco-icon{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.eco-arrow{color:var(--ink-4);font-size:18px;}
+
+.tech-flow{display:flex;flex-direction:column;align-items:center;gap:4px;max-width:340px;margin:0 auto;}
+.tech-node{width:100%;text-align:center;padding:15px 20px;background:var(--bg-panel);border:1px solid var(--hairline);border-radius:12px;font-family:var(--font-head);font-weight:600;font-size:14.5px;}
+.tech-node.highlight{border-color:var(--gold-light);color:var(--gold-light);box-shadow:0 0 24px rgba(224,168,62,0.2);}
+.tech-arrow{color:var(--ink-4);font-size:16px;}
+
+.roadmap-track{display:flex;gap:20px;overflow-x:auto;padding:10px 4px 24px;scrollbar-width:thin;}
+.roadmap-item{flex:0 0 220px;background:var(--bg-panel);border:1px solid var(--hairline);border-radius:16px;padding:26px 22px;position:relative;}
+.rm-dot{width:36px;height:36px;border-radius:50%;background:var(--grad-gold);color:#1a1206;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-weight:700;margin-bottom:16px;}
+.roadmap-item h3{font-size:15.5px;margin-bottom:8px;}
+</style>
+</head>
+<body>
+
+<!-- ===================== SVG DEFS (LOGO) ===================== -->
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="israf-logo" viewBox="0 0 100 100">
+    <rect width="100" height="100" rx="22" fill="#0a120d"/>
+    <path d="M32 40 Q35 32 32 24" stroke="#b87d1a" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M50 40 Q53 30 50 20" stroke="#b87d1a" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M68 40 Q71 32 68 24" stroke="#b87d1a" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <ellipse cx="50" cy="50" rx="22" ry="11" fill="#f5f1e6"/>
+    <rect x="24" y="56" width="52" height="11" rx="5.5" fill="#b87d1a"/>
+    <path d="M22 70 Q22 90 50 90 Q78 90 78 70" stroke="#b87d1a" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="42" y="94" width="16" height="7" rx="3.5" fill="#b87d1a"/>
+  </symbol>
+</svg>
+
+<!-- ===================== NAV ===================== -->
+<nav class="nav" id="mainNav">
+  <div class="container">
+    <div class="logo-row">
+      <svg class="logo-mark"><use href="#israf-logo"/></svg>
+      <span class="logo-word">Israf<span> Guard</span></span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#problem">Problem</a></li>
+      <li><a href="#solution">Solution</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#dashboard">Dashboard</a></li>
+      <li><a href="#student">Student</a></li>
+      <li><a href="#sustainability">Sustainability</a></li>
+      <li><a href="#roadmap">Roadmap</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#dashboard" class="btn btn-primary btn-sm">View Prototype</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero" id="home">
+  <div class="hero-particles" id="heroParticles"></div>
+  <div class="container">
+    <div class="hero-top reveal in-view">
+      <svg class="logo-mark lg hero-logo"><use href="#israf-logo"/></svg>
+      <span class="badge-pill" style="margin-bottom:22px;"><span class="dot"></span>AI-Powered Food Waste Management</span>
+      <h1>Turn Food Waste Into <span class="accent">Opportunity.</span></h1>
+      <p class="hero-sub">Israf Guard is an intelligent food-waste management platform that helps food vendors predict demand, reduce waste, increase profits, and connect surplus food with students.</p>
+      <div class="btn-row" style="justify-content:center;">
+        <a href="#solution" class="btn btn-primary">Explore the Solution</a>
+        <a href="#dashboard" class="btn btn-ghost">View Prototype</a>
+      </div>
+    </div>
+
+    <div class="hero-dash glass reveal reveal-delay-2 in-view">
+      <div class="hero-dash-head">
+        <span class="hero-dash-title">Vendor Intelligence Dashboard — Live Snapshot</span>
+        <span class="live-tag"><span class="dot"></span>Updated 2 minutes ago</span>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="label">Predicted Meals</div><div class="value" data-count="112">0</div><div class="sub">for today</div></div>
+        <div class="hero-stat"><div class="label">Meals Sold</div><div class="value emerald" data-count="104">0</div><div class="sub">86.6% sell-through</div></div>
+        <div class="hero-stat"><div class="label">Food Waste</div><div class="value terracotta" data-count="5">0</div><div class="sub">meals unsold</div></div>
+        <div class="hero-stat"><div class="label">Money Saved</div><div class="value emerald" data-prefix="RM " data-count="312">0</div><div class="sub">vs. last week</div></div>
+        <div class="hero-stat"><div class="label">Profit</div><div class="value gold" data-prefix="RM " data-count="286">0</div><div class="sub">estimated today</div></div>
+        <div class="hero-stat"><div class="label">Sustainability</div><div class="value emerald" data-count="91" data-suffix="%">0</div><div class="sub">waste-efficiency score</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== PROBLEM ===================== -->
+<section class="section" id="problem">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="justify-content:center;">The Problem</span>
+      <h2 class="section-title">Food Waste Is More Than Leftovers.</h2>
+      <p class="section-sub">Most food vendors still rely on manual calculations and intuition to decide how much food to prepare. Spreadsheets and guesswork make it difficult to understand what's really happening to a vendor's money — until it's too late.</p>
+    </div>
+
+    <div class="grid grid-5 reveal">
+      <div class="card">
+        <div class="icon-tile">📈</div>
+        <h3>Overproduction</h3>
+        <p class="desc">Cooking too much food creates unnecessary waste every single day.</p>
+      </div>
+      <div class="card">
+        <div class="icon-tile">📉</div>
+        <h3>Underproduction</h3>
+        <p class="desc">Cooking too little causes missed sales and unhappy customers.</p>
+      </div>
+      <div class="card">
+        <div class="icon-tile">🧮</div>
+        <h3>Manual Calculation</h3>
+        <p class="desc">Spreadsheets and guesswork make it hard to understand real costs.</p>
+      </div>
+      <div class="card">
+        <div class="icon-tile">💸</div>
+        <h3>Hidden Profit Loss</h3>
+        <p class="desc">Food waste directly and quietly reduces the vendor's actual profit.</p>
+      </div>
+      <div class="card">
+        <div class="icon-tile">🙁</div>
+        <h3>Missed Customers</h3>
+        <p class="desc">Surplus food is thrown away instead of reaching students at a discount.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:80px;" class="reveal">
+      <div class="problem-flow">
+        <div class="pf-step">Guess</div>
+        <span class="pf-arrow">→</span>
+        <div class="pf-step bad">Overproduction</div>
+        <span class="pf-arrow">→</span>
+        <div class="pf-step bad">Waste</div>
+        <span class="pf-arrow">→</span>
+        <div class="pf-step bad">Financial Loss</div>
+      </div>
+      <p class="problem-resolve">Israf Guard changes this cycle.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SOLUTION CYCLE ===================== -->
+<section class="section" id="solution" style="background:var(--bg-void);">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="justify-content:center;">The Israf Guard Solution</span>
+      <h2 class="section-title">One Smart Cycle. Four Powerful Actions.</h2>
+      <p class="section-sub">Every day feeds new data into the system — and every day, the system gets a little smarter.</p>
+    </div>
+
+    <div class="cycle-wrap reveal">
+      <div class="cycle-visual" id="cycleVisual">
+        <div class="cycle-ring"></div>
+        <div class="cycle-ring r2"></div>
+        <div class="cycle-center" id="cycleCenter">Predict<br>→ Learn<br>→ Redeem<br>→ Return</div>
+        <div class="cycle-node n1 active" data-node="0"><div class="num">01</div><div class="name">Predict</div></div>
+        <div class="cycle-node n2" data-node="1"><div class="num">02</div><div class="name">Learn</div></div>
+        <div class="cycle-node n3" data-node="2"><div class="num">03</div><div class="name">Redeem</div></div>
+        <div class="cycle-node n4" data-node="3"><div class="num">04</div><div class="name">Return</div></div>
+      </div>
+
+      <div class="cycle-detail">
+        <div class="cycle-detail-card glass" id="cycleDetailCard">
+          <!-- filled by JS -->
+        </div>
+        <div class="cycle-dots" id="cycleDots"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== HOW IT WORKS ===================== -->
+<section class="section" id="how-it-works">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="justify-content:center;">How It Works</span>
+      <h2 class="section-title">From First Sale to Smarter Prediction.</h2>
+      <p class="section-sub">Eight simple steps take a vendor from raw sales data to a fully optimized, waste-reducing operation.</p>
+    </div>
+
+    <div class="steps-list">
+      <div class="step-item reveal"><div class="step-num">1</div><div class="step-body"><h3>Enter or Import Sales Data</h3><p>Vendor enters or imports daily sales information into Israf Guard.</p></div></div>
+      <div class="step-item reveal"><div class="step-num">2</div><div class="step-body"><h3>Analyze Historical Patterns</h3><p>Israf Guard analyzes historical data — day of week, trends, and past leftovers.</p></div></div>
+      <div class="step-item reveal"><div class="step-num">3</div><div class="step-body"><h3>Predict Expected Demand</h3><p>The system forecasts how many meals should be prepared tomorrow.</p></div></div>
+      <div class="step-item reveal"><div class="step-num">4</div><div class="step-body"><h3>Recommend Preparation Quantity</h3><p>Vendor receives a clear, confident, recommended preparation quantity.</p></div></div>
+      <div class="step-item reveal"><div class="step-num">5</div><div class="step-body"><h3>Record Daily Leftovers</h3><p>Prepared, sold, remaining, and wasted quantities are logged at close.</p></div></div>
+      <div class="step-item reveal"><div class="step-num">6</div><div class="step-body"><h3>Learn &amp; Improve</h3><p>The system learns from every day and improves tomorrow's forecast.</p></div></div>
+      <div class="step-item reveal"><div class="step-num">7</div><div class="step-body"><h3>Offer Surplus at a Discount</h3><p>Near closing time, surplus food becomes a limited-time student offer.</p></div></div>
+      <div class="step-item reveal"><div class="step-num">8</div><div class="step-body"><h3>Redirect What Remains</h3><p>Unsold-but-safe food goes to donation; unsuitable food goes to compost.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VENDOR DASHBOARD ===================== -->
+<section class="section" id="dashboard" style="background:var(--bg-void);">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Vendor Dashboard Prototype</span>
+      <h2 class="section-title">Vendor Intelligence Dashboard</h2>
+      <p class="section-sub">A realistic look at what every vendor sees the moment they log in.</p>
+    </div>
+
+    <div class="glass dash-panel reveal">
+      <div class="dash-tabs">
+        <button class="dash-tab active">Today's Overview</button>
+        <button class="dash-tab">This Week</button>
+        <button class="dash-tab">This Month</button>
+      </div>
+
+      <div class="stat-grid" id="dashStatGrid">
+        <div class="stat-tile"><div class="label">Meals Prepared</div><div class="value mono-num" data-count="120">0</div></div>
+        <div class="stat-tile"><div class="label">Meals Sold</div><div class="value mono-num" style="color:var(--emerald-light)" data-count="104">0</div></div>
+        <div class="stat-tile"><div class="label">Remaining</div><div class="value mono-num" style="color:var(--gold-light)" data-count="16">0</div></div>
+        <div class="stat-tile"><div class="label">Waste</div><div class="value mono-num" style="color:var(--terracotta-light)" data-count="5">0</div></div>
+        <div class="stat-tile"><div class="label">Revenue</div><div class="value mono-num" data-prefix="RM " data-count="624">0</div></div>
+        <div class="stat-tile"><div class="label">Est. Profit</div><div class="value mono-num" style="color:var(--emerald-light)" data-prefix="RM " data-count="286">0</div></div>
+      </div>
+
+      <div class="chart-grid">
+        <div class="chart-card">
+          <div class="chart-card-head">
+            <h4>Revenue &amp; Profit — Last 7 Days (RM)</h4>
+            <div class="chart-legend">
+              <span class="lg-item"><span class="swatch" style="background:#1c9d63"></span>Revenue</span>
+              <span class="lg-item"><span class="swatch" style="background:#b87d1a"></span>Profit</span>
+            </div>
+          </div>
+          <div id="chartWeekTrend"></div>
+          <div style="margin-top:22px;padding-top:20px;border-top:1px solid var(--hairline);">
+            <div class="chart-card-head" style="margin-bottom:12px;">
+              <h4 style="font-size:13px;color:var(--ink-3);">Food Waste — Last 7 Days (meals)</h4>
+            </div>
+            <div id="chartWeekWaste"></div>
+          </div>
+        </div>
+
+        <div class="forecast-card glass">
+          <div class="tag">Tomorrow's Forecast</div>
+          <div class="forecast-row"><span class="fl">Expected Demand</span><span class="fv" data-count="87">0</span></div>
+          <div class="forecast-row"><span class="fl">Recommended Preparation</span><span class="fv" style="color:var(--gold-light)" data-count="92">0</span></div>
+          <div style="margin-top:8px;">
+            <div class="flex-between" style="margin-bottom:8px;"><span class="fl">Confidence</span><span class="fl mono-num" id="confVal">0%</span></div>
+            <div class="confidence-bar"><div class="confidence-fill" id="confFill" data-target="91"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-grid" style="margin-top:20px;">
+        <div class="chart-card">
+          <div class="chart-card-head"><h4>Demand Prediction vs. Actual Sales</h4></div>
+          <div id="chartPrediction"></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-head"><h4>Best-Performing Dishes</h4></div>
+          <div id="chartBestDishes"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BEST-SELLER & PROFIT INTELLIGENCE ===================== -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="justify-content:center;">Best-Seller &amp; Profit Intelligence</span>
+      <h2 class="section-title">The Most Popular Dish Isn't Always the Most Profitable.</h2>
+      <p class="section-sub">Israf Guard doesn't just track what sells the most — it tracks what earns the most. Revenue, cost, margin, demand, and waste rate, side by side.</p>
+    </div>
+
+    <div class="glass reveal" style="padding:32px;">
+      <div class="chart-card-head">
+        <h4>Revenue vs. Profit — Weekly Comparison</h4>
+        <div class="chart-legend">
+          <span class="lg-item"><span class="swatch" style="background:#1c9d63"></span>Sales (RM)</span>
+          <span class="lg-item"><span class="swatch" style="background:#b87d1a"></span>Profit (RM)</span>
+        </div>
+      </div>
+      <div id="chartProfitCompare"></div>
+
+      <div class="grid grid-2" style="margin-top:32px;">
+        <div class="card">
+          <h3>🍛 Chicken Rice</h3>
+          <div class="flex-between" style="margin-top:14px;"><span class="desc">Sales</span><span class="mono-num" style="font-family:var(--font-head);font-weight:700;">RM 1,000</span></div>
+          <div class="flex-between" style="margin-top:8px;"><span class="desc">Profit</span><span class="mono-num" style="font-family:var(--font-head);font-weight:700;color:var(--gold-light);">RM 350</span></div>
+          <div class="flex-between" style="margin-top:8px;"><span class="desc">Margin</span><span class="mono-num">35%</span></div>
+        </div>
+        <div class="card">
+          <h3>🍝 Pasta</h3>
+          <div class="flex-between" style="margin-top:14px;"><span class="desc">Sales</span><span class="mono-num" style="font-family:var(--font-head);font-weight:700;">RM 800</span></div>
+          <div class="flex-between" style="margin-top:8px;"><span class="desc">Profit</span><span class="mono-num" style="font-family:var(--font-head);font-weight:700;color:var(--gold-light);">RM 450</span></div>
+          <div class="flex-between" style="margin-top:8px;"><span class="desc">Margin</span><span class="mono-num">56%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SMART PRICING ===================== -->
+<section class="section" style="background:var(--bg-void);">
+  <div class="container">
+    <div class="grid grid-2" style="align-items:center;gap:60px;">
+      <div class="reveal">
+        <span class="eyebrow">Smart Pricing</span>
+        <h2 class="section-title">Price Smarter. Sell Better.</h2>
+        <p class="section-sub">Israf Guard recommends closing-time pricing based on ingredient cost, demand, remaining stock, time of day, historical sales, and waste risk.</p>
+        <div style="margin-top:32px;">
+          <label class="desc" style="display:block;margin-bottom:10px;font-size:13px;">Drag to simulate remaining meals near closing time</label>
+          <input type="range" id="pricingSlider" min="1" max="30" value="12" style="width:100%;accent-color:#b87d1a;">
+        </div>
+      </div>
+
+      <div class="glass reveal" style="padding:32px;">
+        <div class="flex-between">
+          <div>
+            <div class="desc" style="font-size:12px;text-transform:uppercase;letter-spacing:0.06em;">Current Price</div>
+            <div style="font-family:var(--font-head);font-size:28px;font-weight:700;">RM 8.00</div>
+          </div>
+          <div style="text-align:right;">
+            <div class="desc" style="font-size:12px;text-transform:uppercase;letter-spacing:0.06em;">Demand</div>
+            <div style="font-family:var(--font-head);font-size:16px;color:var(--emerald-light);font-weight:600;" id="pricingDemand">High</div>
+          </div>
+        </div>
+        <div style="margin:22px 0;height:1px;background:var(--hairline);"></div>
+        <div class="flex-between" style="margin-bottom:20px;">
+          <span class="desc">Remaining Meals</span>
+          <span class="mono-num" style="font-family:var(--font-head);font-weight:700;" id="pricingRemaining">12 meals</span>
+        </div>
+        <div style="text-align:center;padding:22px;border-radius:16px;background:rgba(224,168,62,0.08);border:1px solid rgba(224,168,62,0.25);">
+          <div class="desc" style="font-size:12px;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Suggested Closing Price</div>
+          <div style="font-family:var(--font-head);font-size:38px;font-weight:700;color:var(--gold-light);" id="pricingSuggested">RM 6.50</div>
+        </div>
+        <p class="desc" style="margin-top:18px;text-align:center;">Higher chance of selling remaining meals while reducing waste.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STUDENT EXPERIENCE ===================== -->
+<section class="section" id="student">
+  <div class="container">
+    <div class="grid grid-2" style="align-items:center;gap:60px;">
+      <div class="reveal" style="order:2;">
+        <span class="eyebrow">Student Experience</span>
+        <h2 class="section-title">Good Food. Better Prices. Less Waste.</h2>
+        <p class="section-sub">Students receive real-time discount alerts, discover nearby vendors, and support sustainable food choices — all while saving money.</p>
+        <ul style="margin-top:28px;display:flex;flex-direction:column;gap:14px;">
+          <li style="display:flex;gap:12px;align-items:flex-start;"><span style="color:var(--emerald-light);">✓</span><span class="desc">Receive instant discount alerts near closing time</span></li>
+          <li style="display:flex;gap:12px;align-items:flex-start;"><span style="color:var(--emerald-light);">✓</span><span class="desc">Discover nearby vendors and surplus food on campus</span></li>
+          <li style="display:flex;gap:12px;align-items:flex-start;"><span style="color:var(--emerald-light);">✓</span><span class="desc">View available offers and claim them in one tap</span></li>
+          <li style="display:flex;gap:12px;align-items:flex-start;"><span style="color:var(--emerald-light);">✓</span><span class="desc">Save money while supporting low-waste vendors</span></li>
+        </ul>
+
+        <div class="glass reveal" style="margin-top:36px;padding:22px;">
+          <div class="desc" style="font-size:12px;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:14px;">Participating Campus Vendors</div>
+          <div id="campusMap" style="position:relative;height:180px;border-radius:12px;background:linear-gradient(160deg, rgba(28,157,99,0.12), rgba(255,255,255,0.02));overflow:hidden;"></div>
+        </div>
+      </div>
+
+      <div class="reveal" style="order:1;display:flex;justify-content:center;">
+        <div class="phone-frame" id="phoneFrame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="phone-status">
+              <span>9:41</span><span>Israf Guard</span>
+            </div>
+            <div class="phone-offer-card">
+              <div class="phone-offer-tag">🔥 LIMITED-TIME OFFER</div>
+              <div class="phone-offer-title">Chicken Rice</div>
+              <div class="phone-offer-price-row">
+                <span class="phone-old-price">RM 8.00</span>
+                <span class="phone-new-price">RM 4.80</span>
+              </div>
+              <div class="phone-offer-meta">🕒 5 meals remaining · Until 8:00 PM</div>
+              <button class="btn btn-primary" style="width:100%;margin-top:16px;" id="claimOfferBtn">Claim Offer</button>
+            </div>
+            <div class="phone-list-title">Nearby Vendors</div>
+            <div class="phone-vendor-row"><span>🥗 Green Bowl Café</span><span class="ok">Open</span></div>
+            <div class="phone-vendor-row"><span>🍜 Noodle House</span><span class="ok">Open</span></div>
+            <div class="phone-vendor-row"><span>🍰 Campus Bakery</span><span class="dim">2 offers</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VENDOR GROWTH ===================== -->
+<section class="section" style="background:var(--bg-void);">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="justify-content:center;">Vendor Growth</span>
+      <h2 class="section-title">Built to Grow Vendors, Not Just Reduce Waste.</h2>
+    </div>
+    <div class="grid grid-5 reveal">
+      <div class="card"><div class="icon-tile good">🧑‍🤝‍🧑</div><h3>New Customers</h3><p class="desc">Discount alerts introduce vendors to students who never knew about them.</p></div>
+      <div class="card"><div class="icon-tile good">🧠</div><h3>Better Decisions</h3><p class="desc">Data replaces guesswork in every preparation decision.</p></div>
+      <div class="card"><div class="icon-tile good">💰</div><h3>Higher Profit</h3><p class="desc">Lower waste means lower unnecessary ingredient costs.</p></div>
+      <div class="card"><div class="icon-tile good">⭐</div><h3>Better Reputation</h3><p class="desc">Sustainability builds a stronger, more trusted brand image.</p></div>
+      <div class="card"><div class="icon-tile good">🔁</div><h3>Customer Loyalty</h3><p class="desc">Students who find a vendor through a discount often come back.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TRUST BADGES ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="justify-content:center;">Trust &amp; Certification</span>
+      <h2 class="section-title">A Reputation System Built on Real Data.</h2>
+      <p class="section-sub">Vendors that consistently reduce waste earn an Israf Guard sustainability badge — visible to every student on the platform.</p>
+    </div>
+    <div class="grid grid-3 reveal">
+      <div class="card" style="text-align:center;">
+        <div style="font-size:38px;margin-bottom:12px;">🥉</div>
+        <h3 style="color:#c98a4e;">Bronze</h3>
+        <p class="desc">Waste Reduction Started</p>
+      </div>
+      <div class="card" style="text-align:center;border-color:rgba(196,203,207,0.4);">
+        <div style="font-size:38px;margin-bottom:12px;">🥈</div>
+        <h3 style="color:#c7ced1;">Silver</h3>
+        <p class="desc">Low-Waste Vendor</p>
+      </div>
+      <div class="card" style="text-align:center;border-color:rgba(224,168,62,0.4);">
+        <div style="font-size:38px;margin-bottom:12px;">🥇</div>
+        <h3 style="color:var(--gold-light);">Gold</h3>
+        <p class="desc">Sustainable Food Partner</p>
+      </div>
+    </div>
+    <div class="glass reveal" style="margin-top:24px;padding:20px 26px;display:flex;align-items:center;gap:16px;max-width:480px;">
+      <span class="badge-pill">🌱 LOW-WASTE VENDOR</span>
+      <span class="desc">Recognized for responsible food management.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ANALYTICS & REPORTS ===================== -->
+<section class="section" style="background:var(--bg-void);">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Analytics &amp; Reports</span>
+      <h2 class="section-title">Know Your Numbers. Improve Your Business.</h2>
+      <p class="section-sub">Beautiful, automatic weekly and monthly reports — no spreadsheets required.</p>
+    </div>
+    <div class="glass reveal" style="padding:32px;">
+      <div class="flex-between" style="margin-bottom:26px;">
+        <h4 style="font-size:16px;">This Month</h4>
+        <span class="badge-pill">📊 Auto-Generated Report</span>
+      </div>
+      <div class="grid grid-4">
+        <div class="stat-tile"><div class="label">Waste Reduced</div><div class="value" style="color:var(--emerald-light);" data-count="18.4" data-decimals="1" data-suffix="%">0</div></div>
+        <div class="stat-tile"><div class="label">Money Saved</div><div class="value" data-prefix="RM " data-count="1240">0</div></div>
+        <div class="stat-tile"><div class="label">Surplus Meals Sold</div><div class="value" data-count="183">0</div></div>
+        <div class="stat-tile"><div class="label">Meals Donated</div><div class="value" style="color:var(--gold-light);" data-count="42">0</div></div>
+      </div>
+      <div style="margin-top:24px;">
+        <div id="chartMonthlyReport"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BEFORE vs AFTER ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="justify-content:center;">Before vs. After</span>
+      <h2 class="section-title">Drag to See the Difference.</h2>
+    </div>
+    <div class="reveal" style="max-width:900px;margin:0 auto;">
+      <div class="ba-slider" id="baSlider">
+        <div class="ba-side ba-before">
+          <div class="ba-label">Without Israf Guard</div>
+          <ul class="ba-list">
+            <li>Guessing</li><li>Manual calculations</li><li>Overproduction</li>
+            <li>Food waste</li><li>Hidden costs</li><li>Missed customers</li><li>Limited business insight</li>
+          </ul>
+        </div>
+        <div class="ba-side ba-after" id="baAfter">
+          <div class="ba-label">With Israf Guard</div>
+          <ul class="ba-list">
+            <li>Data-driven predictions</li><li>Automated insights</li><li>Optimized preparation</li>
+            <li>Reduced waste</li><li>Transparent profit</li><li>Discount-driven customers</li><li>Business intelligence</li>
+          </ul>
+        </div>
+        <input type="range" id="baRange" min="0" max="100" value="50" class="ba-range">
+        <div class="ba-handle" id="baHandle">⇔</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ENVIRONMENTAL IMPACT ===================== -->
+<section class="section" id="sustainability" style="background:var(--bg-void);">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="justify-content:center;">Environmental Impact</span>
+      <h2 class="section-title">Every Meal Saved Is a Small Win for the Planet.</h2>
+      <p class="section-sub">Estimated impact metrics for prototype/demo purposes — reducing food waste carries both financial and environmental value.</p>
+    </div>
+    <div class="grid grid-5 reveal">
+      <div class="card" style="text-align:center;"><div class="icon-tile good" style="margin:0 auto 16px;">🍽️</div><div style="font-family:var(--font-head);font-size:24px;font-weight:700;" data-count="1284">0</div><p class="desc">Meals Saved (est.)</p></div>
+      <div class="card" style="text-align:center;"><div class="icon-tile good" style="margin:0 auto 16px;">📉</div><div style="font-family:var(--font-head);font-size:24px;font-weight:700;" data-count="278" data-suffix=" kg">0</div><p class="desc">Food Waste Reduced (est.)</p></div>
+      <div class="card" style="text-align:center;"><div class="icon-tile good" style="margin:0 auto 16px;">💵</div><div style="font-family:var(--font-head);font-size:24px;font-weight:700;" data-prefix="RM " data-count="1240">0</div><p class="desc">Money Saved (est.)</p></div>
+      <div class="card" style="text-align:center;"><div class="icon-tile good" style="margin:0 auto 16px;">🤝</div><div style="font-family:var(--font-head);font-size:24px;font-weight:700;" data-count="183">0</div><p class="desc">Meals Redistributed (est.)</p></div>
+      <div class="card" style="text-align:center;"><div class="icon-tile good" style="margin:0 auto 16px;">🌱</div><div style="font-family:var(--font-head);font-size:24px;font-weight:700;" data-count="96" data-suffix=" kg">0</div><p class="desc">Compost Diverted (est.)</p></div>
+    </div>
+    <div class="flow-diagram reveal">
+      <div class="flow-step"><div class="flow-icon">🍚</div>Food</div>
+      <span class="pf-arrow">→</span>
+      <div class="flow-step"><div class="flow-icon">🏪</div>Vendor</div>
+      <span class="pf-arrow">→</span>
+      <div class="flow-step"><div class="flow-icon">🎓</div>Student</div>
+      <span class="pf-arrow">→</span>
+      <div class="flow-step"><div class="flow-icon">🌍</div>Sustainability</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== UNIVERSITY ECOSYSTEM ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="justify-content:center;">University Ecosystem</span>
+      <h2 class="section-title">One Platform. An Entire Campus Food Ecosystem.</h2>
+      <p class="section-sub">Israf Guard connects every layer of the university food system into a single, centralized view.</p>
+    </div>
+    <div class="ecosystem-flow reveal">
+      <div class="eco-node"><div class="eco-icon">🎓</div>Students</div>
+      <div class="eco-arrow">↓</div>
+      <div class="eco-node"><div class="eco-icon">🏪</div>Campus Vendors</div>
+      <div class="eco-arrow">↓</div>
+      <div class="eco-node highlight"><div class="eco-icon">🛡️</div>Israf Guard Platform</div>
+      <div class="eco-arrow">↓</div>
+      <div class="eco-node"><div class="eco-icon">🏛️</div>University Management</div>
+      <div class="eco-arrow">↓</div>
+      <div class="eco-node"><div class="eco-icon">♻️</div>Donation / Compost Partners</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ADMIN DASHBOARD ===================== -->
+<section class="section" style="background:var(--bg-void);">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Admin Dashboard</span>
+      <h2 class="section-title">Campus-Wide Waste, In One View.</h2>
+      <p class="section-sub">University administrators get a centralized dashboard across every participating vendor.</p>
+    </div>
+    <div class="glass dash-panel reveal">
+      <div class="grid grid-4" style="margin-bottom:32px;">
+        <div class="stat-tile"><div class="label">Participating Vendors</div><div class="value" data-count="24">0</div></div>
+        <div class="stat-tile"><div class="label">Total Meals Sold</div><div class="value" data-count="18420">0</div></div>
+        <div class="stat-tile"><div class="label">Student Savings</div><div class="value" data-prefix="RM " data-count="9860">0</div></div>
+        <div class="stat-tile"><div class="label">Waste Reduction</div><div class="value" style="color:var(--emerald-light);" data-count="17.8" data-decimals="1" data-suffix="%">0</div></div>
+      </div>
+      <div class="chart-grid">
+        <div class="chart-card">
+          <div class="chart-card-head"><h4>Campus Food Waste (kg)</h4></div>
+          <div class="flex-between" style="margin-bottom:16px;">
+            <div><div class="desc" style="font-size:12px;">This Month</div><div style="font-family:var(--font-head);font-size:22px;font-weight:700;">1,284 kg</div></div>
+            <div><div class="desc" style="font-size:12px;">Previous Month</div><div style="font-family:var(--font-head);font-size:22px;font-weight:700;color:var(--ink-3);">1,562 kg</div></div>
+            <div><div class="desc" style="font-size:12px;">Reduction</div><div style="font-family:var(--font-head);font-size:22px;font-weight:700;color:var(--emerald-light);">17.8%</div></div>
+          </div>
+          <div id="chartCampusWaste"></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-head"><h4>Sustainability Leaderboard</h4></div>
+          <div id="chartLeaderboard"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== USER ROLES ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="justify-content:center;">User Roles</span>
+      <h2 class="section-title">Three Roles. One Connected Platform.</h2>
+    </div>
+    <div class="grid grid-3 reveal">
+      <div class="card"><div class="icon-tile good">🏪</div><h3>Vendor</h3><p class="desc">Manages food preparation, sales, pricing, waste, and reports.</p></div>
+      <div class="card"><div class="icon-tile good">🎓</div><h3>Student</h3><p class="desc">Receives offers, discovers vendors, saves money, and eats sustainably.</p></div>
+      <div class="card"><div class="icon-tile good">🏛️</div><h3>University / Admin</h3><p class="desc">Monitors campus-wide waste, vendor performance, and sustainability metrics.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TECHNOLOGY ===================== -->
+<section class="section" style="background:var(--bg-void);">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="justify-content:center;">Technology</span>
+      <h2 class="section-title">A Modern, Data-Driven Architecture.</h2>
+      <p class="section-sub">The prediction engine can evolve to use machine learning models to further improve demand forecasting over time.</p>
+    </div>
+    <div class="tech-flow reveal">
+      <div class="tech-node">Data Collection</div>
+      <div class="tech-arrow">↓</div>
+      <div class="tech-node">Database</div>
+      <div class="tech-arrow">↓</div>
+      <div class="tech-node highlight">Prediction Engine</div>
+      <div class="tech-arrow">↓</div>
+      <div class="tech-node">Analytics</div>
+      <div class="tech-arrow">↓</div>
+      <div class="tech-node">Vendor Dashboard</div>
+      <div class="tech-arrow">↓</div>
+      <div class="tech-node">Student Notifications</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ROADMAP ===================== -->
+<section class="section" id="roadmap">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="justify-content:center;">Future Vision</span>
+      <h2 class="section-title">From One Campus to a Smarter Food Ecosystem.</h2>
+    </div>
+    <div class="roadmap-track reveal">
+      <div class="roadmap-item"><div class="rm-dot">1</div><h3>University Pilot</h3><p class="desc">Launch with one campus and a small group of vendors.</p></div>
+      <div class="roadmap-item"><div class="rm-dot">2</div><h3>Multiple Campus Vendors</h3><p class="desc">Expand across all food vendors on a single campus.</p></div>
+      <div class="roadmap-item"><div class="rm-dot">3</div><h3>University-Wide Analytics</h3><p class="desc">Give administrators a full sustainability performance view.</p></div>
+      <div class="roadmap-item"><div class="rm-dot">4</div><h3>Multiple Universities</h3><p class="desc">Bring Israf Guard to campuses across the region.</p></div>
+      <div class="roadmap-item"><div class="rm-dot">5</div><h3>City-Wide Food Network</h3><p class="desc">Connect vendors, students, and donation partners citywide.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FINAL CTA ===================== -->
+<section class="section" style="background:var(--grad-hero);text-align:center;">
+  <div class="container reveal">
+    <span class="badge-pill" style="justify-content:center;">🛡️ Israf Guard</span>
+    <h2 class="section-title" style="max-width:760px;margin:22px auto 0;">Waste Less. Earn More. Feed Smarter.</h2>
+    <p class="section-sub" style="max-width:600px;margin-left:auto;margin-right:auto;">Israf Guard connects data, food vendors, students, and sustainability into one intelligent ecosystem.</p>
+    <div class="btn-row" style="justify-content:center;margin-top:36px;">
+      <a href="#dashboard" class="btn btn-primary">Explore the Prototype</a>
+      <a href="#features" class="btn btn-ghost">Become a Vendor</a>
+      <a href="#student" class="btn btn-ghost">Join the Movement</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer style="border-top:1px solid var(--hairline);padding:56px 0 30px;">
+  <div class="container">
+    <div class="flex-between" style="align-items:flex-start;">
+      <div class="logo-row">
+        <svg class="logo-mark sm"><use href="#israf-logo"/></svg>
+        <span class="logo-word">Israf<span> Guard</span></span>
+      </div>
+      <ul class="nav-links" style="flex-wrap:wrap;">
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#solution">Solution</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#student">Student</a></li>
+        <li><a href="#sustainability">Sustainability</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
+      </ul>
+    </div>
+    <div style="margin-top:36px;padding-top:24px;border-top:1px solid var(--hairline);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+      <span class="desc">© 2026 Israf Guard. A prototype concept for smart food-waste management.</span>
+      <span class="desc">Protecting food, money, and the environment from unnecessary waste.</span>
+    </div>
+  </div>
+</footer>
+
+<script id="main-script">
+(function(){
+"use strict";
+
+/* ============ ANCHOR SMOOTH SCROLL (accounts for fixed nav height) ============ */
+function smoothScrollTo(targetY, duration){
+  var startY = window.scrollY;
+  var diff = targetY - startY;
+  var startTime = null;
+  function step(ts){
+    if(!startTime) startTime = ts;
+    var progress = Math.min((ts-startTime)/duration, 1);
+    var eased = progress<0.5 ? 2*progress*progress : 1-Math.pow(-2*progress+2,2)/2;
+    window.scrollTo({top: startY + diff*eased, behavior:'instant'});
+    if(progress<1){ requestAnimationFrame(step); }
+  }
+  requestAnimationFrame(step);
+}
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    var id = a.getAttribute('href').slice(1);
+    var target = document.getElementById(id);
+    if(!target) return;
+    e.preventDefault();
+    var navH = nav.offsetHeight + 14;
+    var targetY = Math.max(0, target.getBoundingClientRect().top + window.scrollY - navH);
+    smoothScrollTo(targetY, 650);
+    history.pushState(null, '', '#'+id);
+  });
+});
+
+/* ============ NAV: shrink on scroll + mobile toggle ============ */
+var nav = document.getElementById('mainNav');
+function onScrollNav(){ if(window.scrollY > 30){ nav.classList.add('scrolled'); } else { nav.classList.remove('scrolled'); } }
+window.addEventListener('scroll', onScrollNav, {passive:true});
+onScrollNav();
+
+var navToggle = document.getElementById('navToggle');
+var navLinksEl = document.querySelector('.nav-links');
+navToggle.addEventListener('click', function(){
+  navLinksEl.classList.toggle('mobile-open');
+});
+document.querySelectorAll('.nav-links a').forEach(function(a){
+  a.addEventListener('click', function(){ navLinksEl.classList.remove('mobile-open'); });
+});
+
+/* ============ SCROLL REVEAL ============ */
+var revealObserver = new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(entry.isIntersecting){
+      entry.target.classList.add('in-view');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+},{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(function(el){ revealObserver.observe(el); });
+
+/* ============ ANIMATED COUNTERS ============ */
+function formatNum(n, decimals){
+  var opts = {minimumFractionDigits:decimals||0, maximumFractionDigits:decimals||0};
+  return n.toLocaleString('en-US', opts);
+}
+function animateCount(el){
+  var target = parseFloat(el.getAttribute('data-count'));
+  var decimals = parseInt(el.getAttribute('data-decimals')||'0',10);
+  var prefix = el.getAttribute('data-prefix')||'';
+  var suffix = el.getAttribute('data-suffix')||'';
+  var duration = 1500;
+  var startTime = null;
+  function step(ts){
+    if(!startTime) startTime = ts;
+    var progress = Math.min((ts-startTime)/duration, 1);
+    var eased = 1 - Math.pow(1-progress, 3);
+    var current = target * eased;
+    el.textContent = prefix + formatNum(current, decimals) + suffix;
+    if(progress < 1){ requestAnimationFrame(step); }
+    else { el.textContent = prefix + formatNum(target, decimals) + suffix; }
+  }
+  requestAnimationFrame(step);
+}
+var countObserver = new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(entry.isIntersecting){
+      animateCount(entry.target);
+      countObserver.unobserve(entry.target);
+    }
+  });
+},{threshold:0.4});
+document.querySelectorAll('[data-count]').forEach(function(el){ countObserver.observe(el); });
+
+/* ============ CONFIDENCE BAR ============ */
+var confFill = document.getElementById('confFill');
+var confVal = document.getElementById('confVal');
+if(confFill){
+  var confObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        var target = parseInt(confFill.getAttribute('data-target'),10);
+        confFill.style.width = target + '%';
+        var start=null;
+        function step(ts){
+          if(!start) start = ts;
+          var p = Math.min((ts-start)/1400,1);
+          confVal.textContent = Math.round(target*p)+'%';
+          if(p<1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+        confObserver.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.4});
+  confObserver.observe(confFill);
+}
+
+/* ============ HERO PARTICLES ============ */
+var particleWrap = document.getElementById('heroParticles');
+if(particleWrap){
+  var n = window.innerWidth < 640 ? 12 : 24;
+  for(var i=0;i<n;i++){
+    var s = document.createElement('span');
+    var size = 3 + Math.random()*5;
+    s.style.width = size+'px';
+    s.style.height = size+'px';
+    s.style.left = (Math.random()*100)+'%';
+    s.style.bottom = (-20 - Math.random()*40)+'px';
+    s.style.animationDuration = (10 + Math.random()*14)+'s';
+    s.style.animationDelay = (Math.random()*14)+'s';
+    particleWrap.appendChild(s);
+  }
+}
+
+/* ============ PREDICT -> LEARN -> REDEEM -> RETURN CYCLE ============ */
+var cycleData = [
+  {
+    name:'Predict', tag:'01 — PREDICT',
+    desc:'The system forecasts how much food should be prepared based on historical sales data — day of week, previous sales, exam weeks, university events, holidays, demand trends, and previous leftover quantities.',
+    list:['Day-of-week &amp; seasonal patterns','Exam weeks &amp; university events','Historical demand trends','Previous leftover quantities'],
+    example:'Predicted demand: <strong style="color:var(--emerald-light)">82 meals</strong> — instead of a rough estimate of <strong>120 meals</strong>.'
+  },
+  {
+    name:'Learn', tag:'02 — LEARN',
+    desc:'At the end of each day, vendors record what was prepared, sold, remaining, and wasted. The system learns from this data and continuously improves future predictions.',
+    list:['Food prepared','Food sold','Food remaining','Food wasted'],
+    example:'Every closing report becomes training data for tomorrow\'s forecast.'
+  },
+  {
+    name:'Redeem', tag:'03 — REDEEM',
+    desc:'Near closing time, remaining sellable food automatically becomes a discounted offer. Students receive the notification and can purchase the food before it becomes waste.',
+    list:['Auto-generated closing-time offers','Push notification to nearby students','Real-time remaining count'],
+    example:'🔥 40% OFF — "Chicken Rice — 5 meals remaining, available until 8:00 PM"'
+  },
+  {
+    name:'Return', tag:'04 — RETURN',
+    desc:'Food that can\'t be sold but is still suitable is redirected to donation channels. Food no longer fit for consumption is sent toward composting instead of ordinary waste.',
+    list:['Surplus-but-safe → donation partners','Unsuitable food → composting','Full traceability, zero silent waste'],
+    example:'Nothing edible goes in the bin without a documented, better alternative first.'
+  }
+];
+var cycleIndex = 0;
+var cycleNodes = document.querySelectorAll('.cycle-node');
+var cycleDetailCard = document.getElementById('cycleDetailCard');
+var cycleDots = document.getElementById('cycleDots');
+var cycleTimer = null;
+
+function renderCycleDots(){
+  cycleDots.innerHTML = '';
+  cycleData.forEach(function(_, i){
+    var d = document.createElement('span');
+    if(i===cycleIndex) d.classList.add('active');
+    cycleDots.appendChild(d);
+  });
+}
+function setCycle(i){
+  cycleIndex = i;
+  cycleNodes.forEach(function(node){
+    node.classList.toggle('active', parseInt(node.getAttribute('data-node'),10) === i);
+  });
+  var d = cycleData[i];
+  cycleDetailCard.innerHTML =
+    '<div class="num">'+d.tag+'</div>'+
+    '<h3>'+d.name+'</h3>'+
+    '<p>'+d.desc+'</p>'+
+    '<ul>'+d.list.map(function(li){return '<li>'+li+'</li>';}).join('')+'</ul>'+
+    '<div class="cycle-example">'+d.example+'</div>';
+  renderCycleDots();
+}
+cycleNodes.forEach(function(node){
+  node.addEventListener('click', function(){
+    setCycle(parseInt(node.getAttribute('data-node'),10));
+    resetCycleTimer();
+  });
+});
+function resetCycleTimer(){
+  if(cycleTimer) clearInterval(cycleTimer);
+  cycleTimer = setInterval(function(){ setCycle((cycleIndex+1) % cycleData.length); }, 4500);
+}
+setCycle(0);
+resetCycleTimer();
+
+/* ============ SMART PRICING SLIDER ============ */
+var pricingSlider = document.getElementById('pricingSlider');
+var pricingRemaining = document.getElementById('pricingRemaining');
+var pricingSuggested = document.getElementById('pricingSuggested');
+var pricingDemand = document.getElementById('pricingDemand');
+if(pricingSlider){
+  function updatePricing(){
+    var remaining = parseInt(pricingSlider.value,10);
+    var base = 8.00;
+    var demandLabel, demandColor, discountFactor;
+    if(remaining <= 8){ demandLabel='High'; demandColor='var(--emerald-light)'; discountFactor = 0.10; }
+    else if(remaining <= 18){ demandLabel='Medium'; demandColor='var(--gold-light)'; discountFactor = 0.19; }
+    else { demandLabel='Low'; demandColor='var(--terracotta-light)'; discountFactor = 0.32; }
+    var suggested = Math.max(base * (1-discountFactor), 3.5);
+    pricingRemaining.textContent = remaining + ' meals';
+    pricingSuggested.textContent = 'RM ' + suggested.toFixed(2);
+    pricingDemand.textContent = demandLabel;
+    pricingDemand.style.color = demandColor;
+  }
+  pricingSlider.addEventListener('input', updatePricing);
+  updatePricing();
+}
+
+/* ============ BEFORE / AFTER SLIDER ============ */
+var baRange = document.getElementById('baRange');
+var baAfter = document.getElementById('baAfter');
+var baHandle = document.getElementById('baHandle');
+if(baRange){
+  function updateBa(){
+    var v = baRange.value;
+    baAfter.style.clipPath = 'inset(0 ' + (100-v) + '% 0 0)';
+    baHandle.style.left = v + '%';
+  }
+  baRange.addEventListener('input', updateBa);
+  updateBa();
+}
+
+/* ============ CAMPUS MAP PINS ============ */
+var campusMap = document.getElementById('campusMap');
+if(campusMap){
+  var pins = [
+    {name:'Green Bowl Café', top:'30%', left:'20%'},
+    {name:'Noodle House', top:'55%', left:'45%'},
+    {name:'Campus Bakery', top:'25%', left:'68%'},
+    {name:'Salad Corner', top:'70%', left:'78%'},
+    {name:'Grill House', top:'65%', left:'15%'}
+  ];
+  pins.forEach(function(p){
+    var pin = document.createElement('div');
+    pin.className = 'map-pin';
+    pin.style.top = p.top; pin.style.left = p.left;
+    pin.setAttribute('data-name', p.name);
+    campusMap.appendChild(pin);
+  });
+}
+
+/* ============ CLAIM OFFER BUTTON ============ */
+var claimBtn = document.getElementById('claimOfferBtn');
+if(claimBtn){
+  claimBtn.addEventListener('click', function(){
+    claimBtn.textContent = 'Offer Claimed ✓';
+    claimBtn.style.opacity = '0.75';
+    claimBtn.style.pointerEvents = 'none';
+  });
+}
+
+/* ============ SVG CHART ENGINE ============ */
+var NS = 'http://www.w3.org/2000/svg';
+function svgEl(tag, attrs){
+  var el = document.createElementNS(NS, tag);
+  for(var k in attrs){ el.setAttribute(k, attrs[k]); }
+  return el;
+}
+function niceMax(v){
+  var mag = Math.pow(10, Math.floor(Math.log10(v||1)));
+  var norm = v/mag;
+  var step = norm<=1?1:norm<=2?2:norm<=5?5:10;
+  return step*mag;
+}
+function animateStrokeOnView(path){
+  var len = path.getTotalLength();
+  path.style.strokeDasharray = len;
+  path.style.strokeDashoffset = len;
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        path.style.transition = 'stroke-dashoffset 1.3s cubic-bezier(.16,.8,.3,1)';
+        path.style.strokeDashoffset = 0;
+        obs.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.3});
+  obs.observe(path);
+}
+function animateBarsOnView(container, bars){
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        bars.forEach(function(b, i){
+          setTimeout(function(){
+            b.el.setAttribute('height', b.h);
+            b.el.setAttribute('y', b.y);
+          }, i*60);
+        });
+        obs.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.25});
+  obs.observe(container);
+}
+
+/* Multi-series line chart: single shared axis (no dual-axis) */
+function lineChart(containerId, opts){
+  var container = document.getElementById(containerId);
+  if(!container) return;
+  var W=600, H=opts.height||200, padL=40, padR=16, padT=16, padB=28;
+  var plotW = W-padL-padR, plotH = H-padT-padB;
+  var allVals = [];
+  opts.series.forEach(function(s){ allVals = allVals.concat(s.data); });
+  var maxV = niceMax(Math.max.apply(null, allVals) * 1.15);
+  var n = opts.labels.length;
+  var svg = svgEl('svg', {viewBox:'0 0 '+W+' '+H, class:'svg-chart', preserveAspectRatio:'none'});
+  svg.setAttribute('style','height:'+H+'px;');
+
+  for(var g=0; g<=4; g++){
+    var gy = padT + plotH - (g/4)*plotH;
+    svg.appendChild(svgEl('line',{x1:padL,y1:gy,x2:W-padR,y2:gy,class:'grid-line'}));
+    var t = svgEl('text',{x:padL-8,y:gy+3,'text-anchor':'end'});
+    t.textContent = Math.round(maxV*(g/4)/(maxV>=1000?1000:1)) + (maxV>=1000?'k':'');
+    svg.appendChild(t);
+  }
+  opts.labels.forEach(function(lab,i){
+    var x = padL + (i/(n-1))*plotW;
+    var t = svgEl('text',{x:x,y:H-6,'text-anchor':'middle'});
+    t.textContent = lab;
+    svg.appendChild(t);
+  });
+
+  opts.series.forEach(function(s){
+    var pts = s.data.map(function(v,i){
+      var x = padL + (i/(n-1))*plotW;
+      var y = padT + plotH - (v/maxV)*plotH;
+      return [x,y];
+    });
+    var areaD = 'M'+pts[0][0]+','+(padT+plotH)+' ' + pts.map(function(p){return 'L'+p[0]+','+p[1];}).join(' ') + ' L'+pts[pts.length-1][0]+','+(padT+plotH)+' Z';
+    svg.appendChild(svgEl('path',{d:areaD, fill:s.color, opacity:'0.1', stroke:'none'}));
+    var lineD = 'M'+pts.map(function(p){return p[0]+','+p[1];}).join(' L');
+    var path = svgEl('path',{d:lineD, fill:'none', stroke:s.color, 'stroke-width':'2','stroke-linecap':'round','stroke-linejoin':'round'});
+    svg.appendChild(path);
+    pts.forEach(function(p,i){
+      if(i===pts.length-1){
+        svg.appendChild(svgEl('circle',{cx:p[0],cy:p[1],r:4,fill:s.color,stroke:'#0e1712','stroke-width':2}));
+        var vt = svgEl('text',{x:p[0]-6,y:p[1]-10,'text-anchor':'end',class:'val-label'});
+        vt.textContent = s.data[i];
+        svg.appendChild(vt);
+      }
+    });
+    container.appendChild(svg);
+    animateStrokeOnView(path);
+  });
+}
+
+/* Grouped vertical bar chart: single shared axis */
+function barChartGrouped(containerId, opts){
+  var container = document.getElementById(containerId);
+  if(!container) return;
+  var W=600, H=opts.height||220, padL=40, padR=10, padT=16, padB=30;
+  var plotW=W-padL-padR, plotH=H-padT-padB;
+  var allVals=[]; opts.series.forEach(function(s){ allVals=allVals.concat(s.data); });
+  var maxV = niceMax(Math.max.apply(null, allVals)*1.15);
+  var n = opts.labels.length;
+  var groupW = plotW/n;
+  var barW = Math.min(22, (groupW-14)/opts.series.length);
+  var svg = svgEl('svg',{viewBox:'0 0 '+W+' '+H, class:'svg-chart'});
+  svg.setAttribute('style','height:'+H+'px;');
+
+  for(var g=0; g<=3; g++){
+    var gy = padT + plotH - (g/3)*plotH;
+    svg.appendChild(svgEl('line',{x1:padL,y1:gy,x2:W-padR,y2:gy,class:'grid-line'}));
+  }
+  var bars = [];
+  opts.labels.forEach(function(lab,i){
+    var groupX = padL + i*groupW;
+    opts.series.forEach(function(s, si){
+      var v = s.data[i];
+      var h = (v/maxV)*plotH;
+      var x = groupX + (groupW - (barW*opts.series.length+4*(opts.series.length-1)))/2 + si*(barW+4);
+      var rect = svgEl('rect',{x:x, y:padT+plotH, width:barW, height:0, rx:4, fill:s.color});
+      svg.appendChild(rect);
+      bars.push({el:rect, h:h, y:padT+plotH-h});
+    });
+    var t = svgEl('text',{x:groupX+groupW/2, y:H-8,'text-anchor':'middle'});
+    t.textContent = lab;
+    svg.appendChild(t);
+  });
+  container.appendChild(svg);
+  animateBarsOnView(svg, bars);
+}
+
+/* Single-series bar chart */
+function barChartSingle(containerId, opts){
+  barChartGrouped(containerId, {labels:opts.labels, series:[{data:opts.data,color:opts.color}], height:opts.height});
+}
+
+/* Horizontal bar leaderboard - single series, no legend needed */
+function hBarLeaderboard(containerId, items){
+  var container = document.getElementById(containerId);
+  if(!container) return;
+  var W=600, rowH=38, padL=140, padR=50, padTop=6;
+  var H = items.length*rowH + padTop*2;
+  var maxV = niceMax(Math.max.apply(null, items.map(function(i){return i.value;}))*1.1);
+  var plotW = W-padL-padR;
+  var svg = svgEl('svg',{viewBox:'0 0 '+W+' '+H, class:'svg-chart'});
+  svg.setAttribute('style','height:'+H+'px;');
+  var bars=[];
+  items.forEach(function(it,i){
+    var y = padTop + i*rowH;
+    var label = svgEl('text',{x:padL-12,y:y+rowH/2+4,'text-anchor':'end'});
+    label.textContent = it.name;
+    svg.appendChild(label);
+    svg.appendChild(svgEl('rect',{x:padL,y:y+8,width:plotW,height:14,rx:7,fill:'rgba(255,255,255,0.05)'}));
+    var w = (it.value/maxV)*plotW;
+    var rect = svgEl('rect',{x:padL,y:y+8,width:0,height:14,rx:7,fill:it.color||'var(--emerald)'});
+    svg.appendChild(rect);
+    var vt = svgEl('text',{x:padL+8,y:y+rowH/2+4,class:'val-label'});
+    vt.textContent = it.value + (it.suffix||'');
+    bars.push({el:rect, targetW:w, textEl:vt});
+  });
+  container.appendChild(svg);
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        bars.forEach(function(b,i){
+          setTimeout(function(){
+            b.el.style.transition = 'width 1s cubic-bezier(.16,.8,.3,1)';
+            b.el.setAttribute('width', b.targetW);
+          }, i*80);
+        });
+        obs.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.25});
+  obs.observe(svg);
+}
+
+/* ============ CHART DATA + RENDER CALLS ============ */
+var dayLabels = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+
+lineChart('chartWeekTrend', {
+  labels: dayLabels,
+  series: [
+    {name:'Revenue', color:'#1c9d63', data:[520,610,580,690,624,710,655]},
+    {name:'Profit', color:'#b87d1a', data:[210,250,230,275,286,300,265]}
+  ],
+  height: 190
+});
+
+barChartSingle('chartWeekWaste', { labels: dayLabels, data:[8,6,7,4,5,3,6], color:'#c23b3b', height:130 });
+
+lineChart('chartPrediction', {
+  labels: dayLabels,
+  series: [
+    {name:'Predicted', color:'#b87d1a', data:[95,88,102,90,98,85,92]},
+    {name:'Actual Sales', color:'#1c9d63', data:[89,84,97,88,95,80,87]}
+  ],
+  height: 210
+});
+
+hBarLeaderboard('chartBestDishes', [
+  {name:'Pasta', value:450, suffix:' RM profit', color:'#b87d1a'},
+  {name:'Chicken Rice', value:350, suffix:' RM profit', color:'#b87d1a'},
+  {name:'Beef Noodles', value:300, suffix:' RM profit', color:'#b87d1a'},
+  {name:'Fried Rice', value:275, suffix:' RM profit', color:'#b87d1a'}
+]);
+
+barChartGrouped('chartProfitCompare', {
+  labels:['Chicken Rice','Pasta','Beef Noodles','Salad Bowl','Fried Rice'],
+  series:[
+    {name:'Sales', color:'#1c9d63', data:[1000,800,720,480,610]},
+    {name:'Profit', color:'#b87d1a', data:[350,450,300,260,275]}
+  ],
+  height: 230
+});
+
+lineChart('chartMonthlyReport', {
+  labels:['Mar','Apr','May','Jun','Jul','Aug'],
+  series:[{name:'Waste Reduced %', color:'#1c9d63', data:[8,10,12,14,16,18.4]}],
+  height: 170
+});
+
+lineChart('chartCampusWaste', {
+  labels:['Mar','Apr','May','Jun','Jul','Aug'],
+  series:[{name:'Waste (kg)', color:'#c23b3b', data:[1562,1510,1480,1420,1340,1284]}],
+  height: 190
+});
+
+hBarLeaderboard('chartLeaderboard', [
+  {name:'Green Bowl Café', value:92, suffix:'%', color:'#1c9d63'},
+  {name:'Campus Bakery', value:87, suffix:'%', color:'#1c9d63'},
+  {name:'Noodle House', value:81, suffix:'%', color:'#1c9d63'},
+  {name:'Salad Corner', value:76, suffix:'%', color:'#1c9d63'},
+  {name:'Grill House', value:68, suffix:'%', color:'#1c9d63'}
+]);
+
+/* ============ DASH TABS (visual only, non-functional filter) ============ */
+document.querySelectorAll('.dash-tabs .dash-tab').forEach(function(tab){
+  tab.addEventListener('click', function(){
+    document.querySelectorAll('.dash-tabs .dash-tab').forEach(function(t){t.classList.remove('active');});
+    tab.classList.add('active');
+  });
+});
+
+})();
+</script>
+</body>
+</html>
