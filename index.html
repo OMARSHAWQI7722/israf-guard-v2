@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a120d'/%3E%3Cpath d='M32 40 Q35 32 32 24' stroke='%23b87d1a' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3Cpath d='M50 40 Q53 30 50 20' stroke='%23b87d1a' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3Cpath d='M68 40 Q71 32 68 24' stroke='%23b87d1a' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3Cellipse cx='50' cy='50' rx='22' ry='11' fill='%23f5f1e6'/%3E%3Crect x='24' y='56' width='52' height='11' rx='5.5' fill='%23b87d1a'/%3E%3Cpath d='M22 70 Q22 90 50 90 Q78 90 78 70' stroke='%23b87d1a' stroke-width='4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='42' y='94' width='16' height='7' rx='3.5' fill='%23b87d1a'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23112c25%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%231e4f3c%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2222%22%20fill%3D%22url%28%23g%29%22/%3E%3Cpath%20d%3D%22M32%2044%20Q37%2035%2032%2028%20Q27%2021%2033%2014%22%20stroke%3D%22%23cbaf5a%22%20stroke-width%3D%223.2%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M50%2040%20Q55%2030%2050%2022%20Q45%2014%2051%206%22%20stroke%3D%22%23cbaf5a%22%20stroke-width%3D%223.2%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M68%2044%20Q63%2035%2068%2028%20Q73%2021%2067%2014%22%20stroke%3D%22%23cbaf5a%22%20stroke-width%3D%223.2%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M24%2044%20A26%2016%200%200%201%2076%2044%20Z%22%20fill%3D%22%23f5f1e6%22/%3E%3Crect%20x%3D%2214%22%20y%3D%2250%22%20width%3D%2272%22%20height%3D%2210%22%20rx%3D%225%22%20fill%3D%22%23f1b441%22/%3E%3Cpath%20d%3D%22M16%2066%20L84%2066%20Q84%2090%2050%2090%20Q16%2090%2016%2066%20Z%22%20fill%3D%22none%22%20stroke%3D%22%23cbaf5a%22%20stroke-width%3D%223.2%22%20stroke-linejoin%3D%22round%22/%3E%3Crect%20x%3D%2242%22%20y%3D%2288%22%20width%3D%2216%22%20height%3D%227%22%20rx%3D%223.5%22%20fill%3D%22%23f1b441%22/%3E%3C/svg%3E">
 <style>
 /* ===================== DESIGN TOKENS ===================== */
 :root{
@@ -430,15 +430,21 @@ h2.section-title{font-size:clamp(30px,4.2vw,48px);line-height:1.12;}
 
 <!-- ===================== SVG DEFS (LOGO) ===================== -->
 <svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="israf-bg-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#112c25"/>
+      <stop offset="100%" stop-color="#1e4f3c"/>
+    </linearGradient>
+  </defs>
   <symbol id="israf-logo" viewBox="0 0 100 100">
-    <rect width="100" height="100" rx="22" fill="#0a120d"/>
-    <path d="M32 40 Q35 32 32 24" stroke="#b87d1a" stroke-width="4" fill="none" stroke-linecap="round"/>
-    <path d="M50 40 Q53 30 50 20" stroke="#b87d1a" stroke-width="4" fill="none" stroke-linecap="round"/>
-    <path d="M68 40 Q71 32 68 24" stroke="#b87d1a" stroke-width="4" fill="none" stroke-linecap="round"/>
-    <ellipse cx="50" cy="50" rx="22" ry="11" fill="#f5f1e6"/>
-    <rect x="24" y="56" width="52" height="11" rx="5.5" fill="#b87d1a"/>
-    <path d="M22 70 Q22 90 50 90 Q78 90 78 70" stroke="#b87d1a" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <rect x="42" y="94" width="16" height="7" rx="3.5" fill="#b87d1a"/>
+    <rect width="100" height="100" rx="22" fill="url(#israf-bg-grad)"/>
+    <path d="M32 44 Q37 35 32 28 Q27 21 33 14" stroke="#cbaf5a" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+    <path d="M50 40 Q55 30 50 22 Q45 14 51 6" stroke="#cbaf5a" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+    <path d="M68 44 Q63 35 68 28 Q73 21 67 14" stroke="#cbaf5a" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+    <path d="M24 44 A26 16 0 0 1 76 44 Z" fill="#f5f1e6"/>
+    <rect x="14" y="50" width="72" height="10" rx="5" fill="#f1b441"/>
+    <path d="M16 66 L84 66 Q84 90 50 90 Q16 90 16 66 Z" fill="none" stroke="#cbaf5a" stroke-width="3.2" stroke-linejoin="round"/>
+    <rect x="42" y="88" width="16" height="7" rx="3.5" fill="#f1b441"/>
   </symbol>
 </svg>
 
